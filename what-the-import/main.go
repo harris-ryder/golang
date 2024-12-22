@@ -73,7 +73,7 @@ func main() {
 	}
 
 	var importLibrary string
-	if result == "Custom..." {
+	if result == "custom..." {
 		customPrompt := promptui.Prompt{
 			Label: "Enter custom import library",
 		}
