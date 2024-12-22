@@ -61,8 +61,7 @@ func main() {
 			"lucide-react",
 			"@heroicons/react",
 			"react-icons",
-			"Custom...", // Added custom option
-
+			"Custom...",
 		},
 	}
 
@@ -101,19 +100,16 @@ func main() {
 			return err
 		}
 
-		// Skip if it's a directory
 		if info.IsDir() {
 			return nil
 		}
 
-		// Check if file has .tsx or .jsx extension
 		if strings.HasSuffix(path, ".tsx") || strings.HasSuffix(path, ".jsx") {
 			content, err := os.ReadFile(path)
 			if err != nil {
 				return err
 			}
 
-			// Count occurrences of "lucide-react"
 			occurrences := strings.Count(string(content), importLibrary)
 			count += occurrences
 			if occurrences > 0 {
@@ -142,18 +138,16 @@ func main() {
 		fmt.Printf("Error walking through directory: %v\n", err)
 		return
 	}
-	// Create a new tabwriter
+
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', tabwriter.Debug)
 
-	// Print header
 	fmt.Fprintln(w, "Icon\tCount\t")
 	fmt.Fprintln(w, "----\t-----\t")
 
-	// Print each icon and count
 	for icon, iconCount := range iconCounts {
 		fmt.Fprintf(w, "%s\t%d\t\n", icon, iconCount)
 	}
-	// Flush the writer to output the table
+
 	w.Flush()
 
 }
